@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+   <style>
+        .imgStyle{
+            width: 200px;
+            height: 200px;
+        }
+        #container{
+            display: flex;
+            flex-wrap: wrap;
+        }
+   </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    
+  </body>
+    <script> 
+
+        async function fetchData() {
+            let response = await fetch('https://ig-food-menus.herokuapp.com/drinks');
+            
+            let data = await response.json();
+            console.log(data);
+            console.log("ok");
+
+          //  render data ui
+          data.map(item =>{
+            const node = document.createElement("div");
+
+            const img = document.createElement("img");
+            
+            img.src = item.img;
+
+            // img.style.width="100px"
+            // img.style.height="100px"
+            img.classList.add("imgStyle")
+            node.appendChild(img)
+
+            document.getElementById("container").appendChild(node);
+          })
+        }
+                
+        fetchData()
+        
+
+
+    </script>
+</html>
